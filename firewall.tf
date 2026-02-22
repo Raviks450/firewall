@@ -1,5 +1,5 @@
 # Create a firewall rule to allow web traffic (HTTP and HTTPS)
-resource "google_compute_firewall" "allow_web" {
+resource "google_compute_firewall" "allow_http" {
   name    = "allow-web-traffic"
   network = google_compute_network.vpc_network.name
   
@@ -25,7 +25,7 @@ resource "google_compute_firewall" "allow_web" {
 }
 
 # Create a firewall rule to allow web traffic (HTTP and HTTPS)
-resource "google_compute_firewall" "allow_web" {
+resource "google_compute_firewall" "allow_https" {
   name    = "allow-web-traffic"
   network = google_compute_network.vpc_network.name
   
