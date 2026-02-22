@@ -1,7 +1,15 @@
+variable "network" {
+  type     = string
+  default  = "default"
+}
+
+variable "project" {}
+
 # Create a firewall rule to allow web traffic (HTTP and HTTPS)
 resource "google_compute_firewall" "allow_http" {
-  name    = "allow-web-traffic"
-  network = google_compute_network.vpc_network.name
+  name    = "allow-http-traffic"
+  network = var.network
+  project = var.project
   
   description = "Allows TCP ports 80 and 443 from all sources for web servers"
   direction   = "INGRESS"
@@ -26,8 +34,9 @@ resource "google_compute_firewall" "allow_http" {
 
 # Create a firewall rule to allow web traffic (HTTP and HTTPS)
 resource "google_compute_firewall" "allow_https" {
-  name    = "allow-web-traffic"
-  network = google_compute_network.vpc_network.name
+  project = var.project
+  name    = "allow-https-traffic"
+  network = var.network
   
   description = "Allows TCP ports 80 and 443 from all sources for web servers"
   direction   = "INGRESS"
